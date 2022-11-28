@@ -36,7 +36,7 @@
         <!-- Navbar Start -->
         <div class="container-fluid p-0 mb-3 bg-transparent">
             <nav class="navbar navbar-expand-lg py-3 py-lg-0 px-lg-5 aaa" style="height:20vw;">
-                <a href="{{ route('home') }}" class="navbar-brand ml-lg-3">
+                <a href="/" class="navbar-brand ml-lg-3">
                     <h1 class="m-0 display-5 text-uppercase text-black" style="font-family: 'Sawarabi Mincho', sans-serif;">東京ラーメンログ</h1>
                 </a>
                 @if(Auth::check())
@@ -75,7 +75,7 @@
         <style>
             @import url('https://fonts.googleapis.com/css?family=Sawarabi+Mincho');
             .bg-img{
-                background-image: url('storage/img/jinmen.jpg');
+                background-image: url('{{ asset('storage/img/jinmen.jpg') }}');
                 background-size: cover;
                 background-position: center 30%;
             }

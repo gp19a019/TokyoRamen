@@ -203,7 +203,7 @@
 
         <!-- リンク -->
         <div class="mt-4 text-center">
-            <button type="button" class="btn btn-lg btn-outline-dark" onclick="location.href='{{ route('postForm', ['id' => $id]) }}'">このお店のレビューを書く</button>
+            <button type="button" class="btn btn-lg btn-outline-info" onclick="location.href='{{ route('postForm', ['id' => $id]) }}'">このお店のレビューを書く</button>
         </div>
 
         <!-- 投稿一覧 -->
@@ -233,17 +233,24 @@
                 </div>
                 <div class="card-footer">
                     <div class="d-flex">
-                        @if(!empty($post_id) && !($post_id == $favorite_id))
-                        <button type="button" class="fa fa-bookmark btn btn-outline-info" onclick="location.href='{{ route('favorite', ['post' => $post['id']]) }}'">ブックマーク</button>
-                        <div class="info2 mt-3" style="font-size:1.2vw;">
-                            <span style="margin-left:38vw;"><span class="fa fa-user">{{ $post['name'] }}</span> | {{ $post['created']->format('Y-m-d') }}</span>  
-                        </div>
+                        @if(!(Auth::user()->name == $post['name']))
+                            @if(!($post_id == $favorite_id))
+                            <button type="button" class="fa fa-bookmark btn btn-outline-info" onclick="location.href='{{ route('favorite', ['post' => $post['id']]) }}'">ブックマーク</button>
+                            <div class="info2 mt-3" style="font-size:1.2vw;">
+                                <span style="margin-left:38vw;"><span class="fa fa-user">{{ $post['name'] }}</span> | {{ $post['created']->format('Y-m-d') }}</span>  
+                            </div>
+                            @else
+                            <button type="button" class="fa fa-bookmark btn btn-info" style="width:13vw;" onclick="location.href='{{ route('outFavorite', ['post' => $post['id']]) }}'">ブックマーク解除</button>
+                            <div class="info2 mt-3" style="font-size:1.2vw;">
+                                <span style="margin-left:34vw;"><span class="fa fa-user">{{ $post['name'] }}</span> | {{ $post['created']->format('Y-m-d') }}</span>
+                            </div>
+                            @endif
                         @else
-                        <button type="button" class="fa fa-bookmark btn btn-info" style="width:13vw;" onclick="location.href='{{ route('outFavorite', ['post' => $post['id']]) }}'">ブックマーク解除</button>
                         <div class="info2 mt-3" style="font-size:1.2vw;">
-                            <span style="margin-left:34vw;"><span class="fa fa-user">{{ $post['name'] }}</span> | {{ $post['created']->format('Y-m-d') }}</span>
+                        <span style="margin-left:48vw;"><span class="fa fa-user">{{ $post['name'] }}</span> | {{ $post['created']->format('Y-m-d') }}</span>  
                         </div>
                         @endif
+                        
                     </div>
                 </div>
             </div>

@@ -102,20 +102,48 @@ class ResourceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    */
+
+    
+    // 投稿編集
+    public function editPost(post $post, createPost $request){
+        //エラーハンドリング
+        if(is_null($post)){
+            abort(404);
+        }
+        $name = $request->storeName;
+        $id = store::where('storeName', $name)->first()->id;
+
+        $columns = ['points', 'image', 'review'];
+        foreach($columns as $column){
+            $post->$column = $request->$column;
+        }
+        $post->store_id = $id;
+
+        $file = $request->image;
+        $request->file('image')->storeAs('public/img', $file);
+        Auth::user()->post()->save($post);
+
+        return redirect('/myPage');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    */
+
+    // 投稿削除
+    public function deletePost(post $post){
+        //エラーハンドリング
+        if(is_null($post)){
+            abort(404);
+        }
+        Auth::user()->post()->delete($post);
+
+        return redirect('/myPage');
     }
 }

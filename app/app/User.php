@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\ResetPassword;
 
 class User extends Authenticatable
 {
@@ -44,6 +45,18 @@ class User extends Authenticatable
     public function favorite(){
         return $this->hasMany('App\favorite');
     }
+
+
+    /**
+  * パスワードリセット通知の送信
+  *
+  * @param string $token
+  * @return void
+  */
+  public function sendPasswordResetNotification($token)
+  {
+    $this->notify(new ResetPassword($token));
+  }
 }
 
 

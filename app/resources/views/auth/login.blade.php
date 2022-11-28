@@ -24,6 +24,11 @@
     </div>
     
     <input type="submit" class="btn btn-outline-dark btn-lg" value="ログイン">
+    @if (Route::has('password.request'))
+        <a class="btn btn-link" href="{{ route('password.request') }}">
+            {{ __('パスワードをお忘れの方はこちら') }}
+        </a>
+    @endif
 </form>
 
 
