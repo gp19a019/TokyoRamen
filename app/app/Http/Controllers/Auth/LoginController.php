@@ -21,6 +21,10 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    protected function loggedOut(\Illuminate\Http\Request $request){
+        return redirect('/login');
+    }
+
     /**
      * Where to redirect users after login.
      *
@@ -36,5 +40,15 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function redirectTo(){
+        $role = $this->guard()->user()->role;
+        if($role == 0){
+            return '/admin';
+        }
+        if($role == 1){
+            return '/posts';
+        }
     }
 }

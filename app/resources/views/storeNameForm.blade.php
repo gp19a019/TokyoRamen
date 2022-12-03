@@ -7,7 +7,7 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto mt-1">
             <li class="nav-item mb-4">
-                <a href="{{ route('home') }}" class="nav-link link-dark fa fa-home">
+                <a href="{{ route('posts.index') }}" class="nav-link link-dark fa fa-home">
                 <svg class="bi me-2" width="16" height="16"></svg>
                 トップ
                 </a>

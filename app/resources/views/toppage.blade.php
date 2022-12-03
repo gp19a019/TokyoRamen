@@ -7,7 +7,7 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto mt-1">
             <li class="nav-item mb-4">
-                <a href="{{ route('home') }}" class="nav-link fa fa-home active" aria-current="page">
+                <a href="{{ route('posts.index') }}" class="nav-link fa fa-home active" aria-current="page">
                 <svg class="bi me-2" width="16" height="16"></svg>
                 トップ
                 </a>
@@ -50,9 +50,13 @@
             </div>
         </form>
 
-        @if(!empty($id))
         <!-- 投稿一覧 -->
         <div class="main-top p-4">
+            @if(empty($posts) == true)
+                <div class="alert alert-danger" role="alert">
+                    投稿はありません。
+                </div>
+            @else
             @foreach($posts as $post)
             <div class="card mb-4" style="max-width: 65vw;">
                 <div class="card-header rounded">
@@ -79,7 +83,7 @@
                 <div class="card-footer">
                     <div class="d-flex">
                         @if(!(Auth::user()->name == $post['name']))
-                            @if(!($post_id == $favorite_id))
+                            @if(!empty($post_id) && !($post_id == $favorite_id))
                             <button type="button" class="fa fa-bookmark btn btn-outline-info" onclick="location.href='{{ route('favorite', ['post' => $post['id']]) }}'">ブックマーク</button>
                             <div class="info2 mt-3" style="font-size:1.2vw;">
                                 <span style="margin-left:38vw;"><span class="fa fa-user">{{ $post['name'] }}</span> | {{ $post['created']->format('Y-m-d') }}</span>  
@@ -100,10 +104,8 @@
                 </div>
             </div>
             @endforeach
+            @endif
         </div>
-        @else
-        <script>alert('{{ $message }}')</script>
-        @endif
 
     </div>
 

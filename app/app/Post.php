@@ -26,11 +26,4 @@ class Post extends Model
     public function store(){
         return $this->hasMany('App\Store');
     }
-
-    public static function boot(){
-        parent::boot();
-        static::deleted(function ($post){
-            $post->store()->delete();
-        });
-    }
 }

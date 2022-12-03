@@ -2,7 +2,7 @@
 @section('content')
 
 <!-- 投稿フォーム -->
-<h2 style="text-align:center" class="store-form">投稿フォーム</h2>
+<h2 style="text-align:center" class="store-form mt-5">投稿フォーム</h2>
 <!-- バリデーションエラー -->
 @if($errors->any())
 <div class="alert alert-danger">
@@ -13,7 +13,7 @@
     </ul>
 </div>
 @endif
-<form action="" method="POST" class="w-50 mt-5" style="margin:0 auto" enctype="multipart/form-data">
+<form action="{{ route('posts.store') }}" method="POST" class="w-50 mt-5" style="margin:0 auto" enctype="multipart/form-data">
 @csrf
 <div class="form-group mb-3">
     <label for="points" class="form-contents" style="font-size:1.5vw;">評価（点数）</label>

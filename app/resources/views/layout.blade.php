@@ -36,19 +36,19 @@
         <!-- Navbar Start -->
         <div class="container-fluid p-0 mb-3 bg-transparent">
             <nav class="navbar navbar-expand-lg py-3 py-lg-0 px-lg-5 aaa" style="height:20vw;">
-                <a href="/" class="navbar-brand ml-lg-3">
+                <a href="{{ route('posts.index') }}" class="navbar-brand ml-lg-3">
                     <h1 class="m-0 display-5 text-uppercase text-black" style="font-family: 'Sawarabi Mincho', sans-serif;">東京ラーメンログ</h1>
                 </a>
                 @if(Auth::check())
                 <div class="collapse navbar-collapse justify-content-between px-lg-3 navi_" id="navbarCollapse">
                     <div class="navbar-nav m-auto ml-2 navi1">
-                        <a href="{{ route('home') }}" class="nav-item nav-link fa fa-home">トップ</a>
+                        <a href="{{ route('posts.index') }}" class="nav-item nav-link fa fa-home">トップ</a>
                         <a href="{{ route('storeNameForm') }}" class="nav-item nav-link ml-3 fa fa-cutlery">店舗申請</a>
                         <a href="{{ route('mypage') }}" class="nav-item nav-link ml-3 fa fa-info">マイページ</a>
                         <a href="{{ route('storeinfo_') }}" class="nav-item nav-link ml-3 fa fa-cutlery">店舗検索</a>
                     </div>
                     <div class="my-navbar-control text-end">
-                        <a href="{{ route('home') }}" class="my-navbar-item fa fa-user text-decoration-none">{{ Auth::user()->name }}</a>
+                        <a href="{{ route('posts.index') }}" class="my-navbar-item fa fa-user text-decoration-none">{{ Auth::user()->name }}</a>
                             /
                         <a href="#" id="logout" class="my-navbar-item">ログアウト</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none;">
@@ -77,7 +77,7 @@
             .bg-img{
                 background-image: url('{{ asset('storage/img/jinmen.jpg') }}');
                 background-size: cover;
-                background-position: center 30%;
+                background-position: center 34%;
             }
             .aaa{
                 background-color: rgba(255, 255, 255, 0.25);

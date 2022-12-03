@@ -25,7 +25,7 @@ class CreateStore extends FormRequest
     {
         return [
             'storeName' => 'required|max:50',
-            'postCode' => 'max:7|integer',
+            'postCode' => 'digits:7|integer|nullable',
             'address' => 'required'
         ];
     }

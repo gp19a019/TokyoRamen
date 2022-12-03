@@ -42,7 +42,7 @@
                 @if(Auth::check())
                 <div class="collapse navbar-collapse justify-content-between px-lg-3 navi_" id="navbarCollapse">
                     <div class="navbar-nav m-auto ml-2 navi1">
-                        <a href="{{ route('home') }}" class="nav-item nav-link fa fa-home">トップ</a>
+                        <a href="{{ route('posts.index') }}" class="nav-item nav-link fa fa-home">トップ</a>
                         <a href="{{ route('storeNameForm') }}" class="nav-item nav-link ml-3 fa fa-cutlery">店舗申請</a>
                         <a href="{{ route('mypage') }}" class="nav-item nav-link ml-3 fa fa-info">マイページ</a>
                         <a href="{{ route('storeinfo_') }}" class="nav-item nav-link ml-3 fa fa-cutlery">店舗検索</a>
@@ -104,7 +104,7 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto mt-1">
             <li class="nav-item mb-4">
-                <a href="{{ route('home') }}" class="nav-link link-dark fa fa-home">
+                <a href="{{ route('posts.index') }}" class="nav-link link-dark fa fa-home">
                 <svg class="bi me-2" width="16" height="16"></svg>
                 トップ
                 </a>
@@ -203,7 +203,7 @@
 
         <!-- リンク -->
         <div class="mt-4 text-center">
-            <button type="button" class="btn btn-lg btn-outline-info" onclick="location.href='{{ route('postForm', ['id' => $id]) }}'">このお店のレビューを書く</button>
+            <button type="button" class="btn btn-lg btn-outline-info" onclick="location.href='{{ route('create', ['store' => $id]) }}'">このお店のレビューを書く</button>
         </div>
 
         <!-- 投稿一覧 -->
@@ -234,7 +234,7 @@
                 <div class="card-footer">
                     <div class="d-flex">
                         @if(!(Auth::user()->name == $post['name']))
-                            @if(!($post_id == $favorite_id))
+                            @if(!empty($post_id) && !($post_id == $favorite_id))
                             <button type="button" class="fa fa-bookmark btn btn-outline-info" onclick="location.href='{{ route('favorite', ['post' => $post['id']]) }}'">ブックマーク</button>
                             <div class="info2 mt-3" style="font-size:1.2vw;">
                                 <span style="margin-left:38vw;"><span class="fa fa-user">{{ $post['name'] }}</span> | {{ $post['created']->format('Y-m-d') }}</span>  

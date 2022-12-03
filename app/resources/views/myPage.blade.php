@@ -7,7 +7,7 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto mt-1">
             <li class="nav-item mb-4">
-                <a href="{{ route('home') }}" class="nav-link link-dark fa fa-home">
+                <a href="{{ route('posts.index') }}" class="nav-link link-dark fa fa-home">
                 <svg class="bi me-2" width="16" height="16"></svg>
                 トップ
                 </a>
@@ -94,8 +94,12 @@
                     </div>
                     <!-- リンク -->
                     <div class="d-flex justify-content-around w-75 mt-4 mb-4"  style="margin:0 auto;">
-                        <button type="button" class="btn btn-lg btn-success btn1" onclick="location.href='{{ route('editPostForm', ['post' => $mypost['id']]) }}'">編集</button>
-                        <button type="button" class="btn btn-lg btn-danger" onclick="location.href='{{ route('deletePost', ['post' => $mypost['id']]) }}'">削除</button>
+                        <button type="button" class="btn btn-lg btn-success btn1" onclick="location.href='{{ route('posts.edit', ['post' => $mypost['id']]) }}'">編集</button>
+                        <form action="{{ route('posts.destroy', ['post' => $mypost['id']]) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" class="btn btn-lg btn-danger" onclick="return confirm('削除しますか？')" value="削除" />
+                        </form>
                     </div>
                     @endforeach
                     @endif
